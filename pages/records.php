@@ -37,7 +37,6 @@ if($_GET['grade'] == '10'){ $active4 = "btn-success";}else{ $active4 = 'btn-defa
 <a href="smis.php?request=academic_record&student_id=<?php echo $_GET['student_id'] ?>&grade=8&form=record" class="btn btn-menu <?php echo $active2 ?> pull-left"> Grade 8</a>
 <a href="smis.php?request=academic_record&student_id=<?php echo $_GET['student_id'] ?>&grade=9&form=record" class="btn btn-menu <?php echo $active3 ?> pull-left"> Grade 9</a>
 <a href="smis.php?request=academic_record&student_id=<?php echo $_GET['student_id'] ?>&grade=10&form=record" class="btn btn-menu <?php echo $active4 ?> pull-left"> Grade 10</a>
-<a class="btn btn-sm btn-primary pull-left" style = "position:relative;left:10px;" href="smis.php?request=form_record&student_id=<?php echo $_GET['student_id'] ?>"><i class="fa fa-print"></i> Print Form 137</a>		
 <a class="btn btn-sm btn-info pull-right" href="smis.php?request=academic_record&student_id=<?php echo $_GET['student_id'] ?>&form=add_record"><i class="fa fa-plus"></i> Add Past Record if Transferee</a>
 <br><br>
 	</div>
