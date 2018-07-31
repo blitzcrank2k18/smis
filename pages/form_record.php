@@ -1,6 +1,21 @@
 <?php 
 $id=$_GET['student_id'];
 ?>
+
+<?php
+include "../includes/db.php";
+$stud = mysqli_query($conn,"SELECT * from student_sy_status  left join student_profile on student_sy_status.student_id = student_profile.student_id 
+	left join school_year on student_sy_status.sy_id = school_year.sy_id 
+	  where  student_sy_status.student_id ='".$_GET['student_id']."' and student_sy_status.grade = '".$_GET['grade']."' ");
+while($t_row = mysqli_fetch_assoc($stud)){
+$bd1 = date("Y",strtotime($t_row['bday']));
+if ( date("md",strtotime($t_row['bday'])) > date("md") ){
+	$bd2 =(date("Y") - $bd1) - 1; 
+	}else{
+	$bd2 =  date("Y") - $bd1; 
+	}
+if(mysqli_num_rows($stud) > 0 ){
+ ?>
 <style type="text/css">
 	.text-info {
     font-size: 12px;
@@ -9,22 +24,31 @@ $id=$_GET['student_id'];
      line-height: 17px; 
 	}
 </style>
+<?php	
+	include '../includes/db.php';
+	$query=mysqli_query($conn,"select * from student_profile WHERE student_id ='$id'")or die(mysqli_error($conn));		
+	$row=mysqli_fetch_array($query);
+?>
+
+
+
 <div class = "col-lg-12">
 	<h3 style = "text-align:center;position:relative;top:-100px;">EFEGENIO LIZRES NATIONAL HIGH SCHOOL</h3>
 	<h5 style = "text-align:center;position:relative;top:-100px;">SECONDARY STUDENT PERMANENT RECORD</h5>
 	<div class = "row-fluid" style="position:relative;top:-80px;">
 		<div class = "col-lg-6 col-md-6 col-xs-6 col-sm-6">
-			<p class = "text-info">Name:<?=$t_row['firstname']?></p>
-			<p class = "text-info">Place of birth: ARMANDO FERNANDEZ</p>
-			<p class = "text-info">Parents / Guardian: ARMANDO FERNANDEZ Sr.</p>
+			<p class = "text-info">Name:<span style = "text-transform: capitalize;"><?=$row['firstname']. " " .$row['midname']. " ".$row['lastname'];?></span></p>
+			<p class = "text-info">Place of birth: <span style = "text-transform: capitalize;"><?=$row['birthplace'];?></span></p>
+			<p class = "text-info">Parents / Guardian: <span style = "text-transform: capitalize;"><?=$row['guardian']?></span></p>
 			<p class = "text-info">Earn Course Completed : Test</p>
 		</div>
 		<div class = "col-lg-6 col-md-6 col-xs-6 col-sm-6">
-			<p class = "text-info">Date of Birth</p>
-			<p class = "text-info">Gender</p>
+			<p class = "text-info">Date of Birth: <?=date('F d,Y',strtotime($row['bday']))?> </p>
+			<p class = "text-info">Gender : <?=$row['gender']?></p>
 			<p class = "text-info">Residence</p>
 			<p class = "text-info">Year</p>
 		</div>
+
 
 		<div class = "col-lg-6 col-sm-6 col-xs-6 col-sm-6">
 		<table id="grade" class="table table-bordered">
@@ -44,7 +68,7 @@ $id=$_GET['student_id'];
 			</tr>
 		</thead>
 		<tbody>
-			<?php
+			<?php include'../includes/db.php';
 			$grade = mysqli_query($conn,"SELECT * from student_grade natural join subject_list where sss_id = '".$t_row['sss_id']."' ");
 			while($g_row= mysqli_fetch_assoc($grade)){
 			 ?>
@@ -185,7 +209,7 @@ $id=$_GET['student_id'];
 	</div>
 
 
-
+<?php }else{ echo '<h4>No data found.</h4>';} } ?>
 
 </div>
 
