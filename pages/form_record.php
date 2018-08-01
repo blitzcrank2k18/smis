@@ -2,20 +2,7 @@
 $id=$_GET['student_id'];
 ?>
 
-<?php
-include "../includes/db.php";
-$stud = mysqli_query($conn,"SELECT * from student_sy_status  left join student_profile on student_sy_status.student_id = student_profile.student_id 
-	left join school_year on student_sy_status.sy_id = school_year.sy_id 
-	  where  student_sy_status.student_id ='".$_GET['student_id']."' and student_sy_status.grade = '".$_GET['grade']."' ");
-while($t_row = mysqli_fetch_assoc($stud)){
-$bd1 = date("Y",strtotime($t_row['bday']));
-if ( date("md",strtotime($t_row['bday'])) > date("md") ){
-	$bd2 =(date("Y") - $bd1) - 1; 
-	}else{
-	$bd2 =  date("Y") - $bd1; 
-	}
-if(mysqli_num_rows($stud) > 0 ){
- ?>
+
 <style type="text/css">
 	.text-info {
     font-size: 12px;
@@ -49,12 +36,26 @@ if(mysqli_num_rows($stud) > 0 ){
 			<p class = "text-info">Year</p>
 		</div>
 
+		<?php
+include "../includes/db.php";
+$stud = mysqli_query($conn,"SELECT * from student_sy_status  left join student_profile on student_sy_status.student_id = student_profile.student_id left join school_year on student_sy_status.sy_id = school_year.sy_id where  student_sy_status.student_id ='".$_GET['student_id']."' AND student_sy_status.grade = student_sy_status.grade GROUP BY student_sy_status.student_id ='".$_GET['student_id']."'  ");
+while($t_row = mysqli_fetch_assoc($stud)){
+	$grades = $t_row['grade'];
+$bd1 = date("Y",strtotime($t_row['bday']));
+if ( date("md",strtotime($t_row['bday'])) > date("md") ){
+	$bd2 =(date("Y") - $bd1) - 1; 
+	}else{
+	$bd2 =  date("Y") - $bd1; 
+	}
+if(mysqli_num_rows($stud) > 0 ){
+ ?>
+
 
 		<div class = "col-lg-6 col-sm-6 col-xs-6 col-sm-6">
 		<table id="grade" class="table table-bordered">
 		<thead>
 			<tr>
-				<th style="width:30%;border-bottom: 0px solid black !important"><center>Subject</center></th>
+				<th style="width:25%;border-bottom: 0px solid black !important"><center>Subject</center></th>
 				<th style="width:40%" colspan="4"><center>Period</center></th>
 				<th style="width:15%;border-bottom: 0px solid black !important"><center>Final</center></th>
 			</tr>
@@ -68,8 +69,8 @@ if(mysqli_num_rows($stud) > 0 ){
 			</tr>
 		</thead>
 		<tbody>
-			<?php include'../includes/db.php';
-			$grade = mysqli_query($conn,"SELECT * from student_grade natural join subject_list where sss_id = '".$t_row['sss_id']."' ");
+			<?php 
+			$grade = mysqli_query($conn,"SELECT * FROM `student_sy_status` LEFT JOIN student_profile ON student_sy_status.student_id = student_profile.student_id LEFT JOIN student_grade ON student_grade.sss_id = student_sy_status.sss_id LEFT JOIN subject_list ON subject_list.subject_id = student_grade.subject_id WHERE grade = '7' AND student_profile.student_id= $id");
 			while($g_row= mysqli_fetch_assoc($grade)){
 			 ?>
 			 <tr>
@@ -93,7 +94,7 @@ if(mysqli_num_rows($stud) > 0 ){
 		<table id="grade" class="table table-bordered">
 		<thead>
 			<tr>
-				<th style="width:30%;border-bottom: 0px solid black !important"><center>Subject</center></th>
+				<th style="width:25%;border-bottom: 0px solid black !important"><center>Subject</center></th>
 				<th style="width:40%" colspan="4"><center>Period</center></th>
 				<th style="width:15%;border-bottom: 0px solid black !important"><center>Final</center></th>
 			</tr>
@@ -108,10 +109,11 @@ if(mysqli_num_rows($stud) > 0 ){
 		</thead>
 		<tbody>
 			<?php
-			$grade = mysqli_query($conn,"SELECT * from student_grade natural join subject_list where sss_id = '".$t_row['sss_id']."' ");
+			$grade = mysqli_query($conn,"SELECT * FROM `student_sy_status` LEFT JOIN student_profile ON student_sy_status.student_id = student_profile.student_id LEFT JOIN student_grade ON student_grade.sss_id = student_sy_status.sss_id LEFT JOIN subject_list ON subject_list.subject_id = student_grade.subject_id WHERE grade = '8' AND student_profile.student_id = $id" );
 			while($g_row= mysqli_fetch_assoc($grade)){
 			 ?>
 			 <tr>
+			
 			 	<td class="text-left"><?php echo ucwords($g_row['subject']) ?></td>
 			 	<td class="text-center"><?php echo $g_row['1grading'] ?></td>
 			 	<td class="text-center"><?php echo $g_row['2grading'] ?></td>
@@ -121,8 +123,8 @@ if(mysqli_num_rows($stud) > 0 ){
 			 </tr>
 			<?php } ?>
 			<tr>
-				<th colspan="5" class="text-right">General Average</th>
-				<th class="text-center"><?php echo $t_row['average'] ?></th>
+				<td colspan="5" class="text-right">General Average</td>
+				<td class="text-center"><?php echo $t_row['average'] ?></td>
 			</tr>
 		</tbody>
 		</table>
@@ -132,7 +134,7 @@ if(mysqli_num_rows($stud) > 0 ){
 		<table id="grade" class="table table-bordered">
 		<thead>
 			<tr>
-				<th style="width:30%;border-bottom: 0px solid black !important"><center>Subject</center></th>
+				<th style="width:25%;border-bottom: 0px solid black !important"><center>Subject</center></th>
 				<th style="width:40%" colspan="4"><center>Period</center></th>
 				<th style="width:15%;border-bottom: 0px solid black !important"><center>Final</center></th>
 			</tr>
@@ -147,7 +149,7 @@ if(mysqli_num_rows($stud) > 0 ){
 		</thead>
 		<tbody>
 			<?php
-			$grade = mysqli_query($conn,"SELECT * from student_grade natural join subject_list where sss_id = '".$t_row['sss_id']."' ");
+			$grade = mysqli_query($conn,"SELECT * FROM `student_sy_status` LEFT JOIN student_profile ON student_sy_status.student_id = student_profile.student_id LEFT JOIN student_grade ON student_grade.sss_id = student_sy_status.sss_id LEFT JOIN subject_list ON subject_list.subject_id = student_grade.subject_id WHERE grade = '9' AND student_profile.student_id = $id");
 			while($g_row= mysqli_fetch_assoc($grade)){
 			 ?>
 			 <tr>
@@ -171,7 +173,7 @@ if(mysqli_num_rows($stud) > 0 ){
 		<table id="grade" class="table table-bordered">
 		<thead>
 			<tr>
-				<th style="width:30%;border-bottom: 0px solid black !important"><center>Subject</center></th>
+				<th style="width:2%;border-bottom: 0px solid black !important"><center>Subject</center></th>
 				<th style="width:40%" colspan="4"><center>Period</center></th>
 				<th style="width:15%;border-bottom: 0px solid black !important"><center>Final</center></th>
 			</tr>
@@ -186,7 +188,7 @@ if(mysqli_num_rows($stud) > 0 ){
 		</thead>
 		<tbody>
 			<?php
-			$grade = mysqli_query($conn,"SELECT * from student_grade natural join subject_list where sss_id = '".$t_row['sss_id']."' ");
+			$grade = mysqli_query($conn,"SELECT * FROM `student_sy_status` LEFT JOIN student_profile ON student_sy_status.student_id = student_profile.student_id LEFT JOIN student_grade ON student_grade.sss_id = student_sy_status.sss_id LEFT JOIN subject_list ON subject_list.subject_id = student_grade.subject_id WHERE grade = '10' AND student_profile.student_id= $id");
 			while($g_row= mysqli_fetch_assoc($grade)){
 			 ?>
 			 <tr>
@@ -208,8 +210,7 @@ if(mysqli_num_rows($stud) > 0 ){
 
 	</div>
 
-
-<?php }else{ echo '<h4>No data found.</h4>';} } ?>
-
 </div>
+<p>I hereby certify that this is true record of <span style="text-transform: capitalize; text-align:justify; "><?=$row['firstname']. " " .$row['midname']. " ".$row['lastname'];?></span>. This student is eligible on this <?= date('d');?> day of <?= date('F');?> <?= date('Y');?> for admission to College as a regular/irregular student and has no money or property responsible for this school</p>
+<?php }else{ echo '<h4>No data found.</h4>';} } ?>
 
