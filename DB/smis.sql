@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 08, 2018 at 02:44 AM
--- Server version: 10.1.19-MariaDB
--- PHP Version: 5.6.28
+-- Generation Time: Aug 05, 2018 at 05:06 PM
+-- Server version: 10.1.8-MariaDB
+-- PHP Version: 5.6.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -31,6 +31,14 @@ CREATE TABLE `mr_and_ms` (
   `sss_id` int(12) NOT NULL,
   `sy_id` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `mr_and_ms`
+--
+
+INSERT INTO `mr_and_ms` (`id`, `sss_id`, `sy_id`) VALUES
+(1, 19, 4),
+(2, 21, 4);
 
 -- --------------------------------------------------------
 
@@ -285,10 +293,10 @@ INSERT INTO `student_attendance` (`att_id`, `sss_id`, `month`, `days_classes`, `
 (190, 18, 'March', 0, 0),
 (191, 18, 'April', 0, 0),
 (192, 18, 'May', 0, 0),
-(193, 19, 'June', 10, 10),
-(194, 19, 'July', 10, 10),
-(195, 19, 'August', 10, 10),
-(196, 19, 'September', 10, 10),
+(193, 19, 'June', 1, 10),
+(194, 19, 'July', 1, 10),
+(195, 19, 'August', 1, 10),
+(196, 19, 'September', 1, 10),
 (197, 19, 'October', 0, 0),
 (198, 19, 'November', 0, 0),
 (199, 19, 'December', 0, 0),
@@ -332,7 +340,19 @@ INSERT INTO `student_attendance` (`att_id`, `sss_id`, `month`, `days_classes`, `
 (237, 22, 'Febuary', 0, 0),
 (238, 22, 'March', 0, 0),
 (239, 22, 'April', 0, 0),
-(240, 22, 'May', 0, 0);
+(240, 22, 'May', 0, 0),
+(241, 23, 'June', 1, 0),
+(242, 23, 'July', 1, 0),
+(243, 23, 'August', 1, 0),
+(244, 23, 'September', 1, 0),
+(245, 23, 'October', 1, 0),
+(246, 23, 'November', 1, 0),
+(247, 23, 'December', 1, 0),
+(248, 23, 'January', 1, 0),
+(249, 23, 'February', 1, 0),
+(250, 23, 'March', 0, 0),
+(251, 23, 'April', 1, 0),
+(252, 23, 'May', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -359,15 +379,41 @@ INSERT INTO `student_grade` (`sg_id`, `sss_id`, `subject_id`, `1grading`, `2grad
 (1, 3, 3, 50, 50, 50, 50, '50'),
 (2, 3, 6, 50, 50, 50, 50, '50'),
 (3, 3, 3, 85, 56, 86, 86, '78'),
-(4, 19, 6, 0, 0, 0, 0, '85'),
-(5, 19, 2, 0, 0, 0, 0, '90'),
-(6, 19, 3, 0, 0, 0, 0, '88'),
+(4, 19, 6, 86, 86, 84, 85, '85'),
+(5, 19, 2, 88, 84, 87, 85, '86'),
+(6, 19, 3, 85, 86, 84, 84, '85'),
 (7, 20, 6, 95, 94, 95, 95, '95'),
 (8, 20, 2, 80, 80, 80, 80, '80'),
 (9, 20, 3, 80, 80, 80, 80, '80'),
 (10, 17, 6, 88, 88, 88, 88, '88'),
 (11, 18, 2, 88, 88, 88, 88, '88'),
-(12, 21, 2, 87, 85, 87, 86, '86');
+(12, 21, 2, 87, 85, 87, 86, '86'),
+(13, 23, 6, 82, 84, 80, 85, '83'),
+(14, 17, 2, 82, 83, 84, 86, '84'),
+(15, 17, 3, 88, 84, 86, 84, '86'),
+(16, 17, 4, 88, 88, 88, 84, '87'),
+(17, 17, 6, 88, 78, 89, 82, '84'),
+(18, 17, 3, 88, 99, 99, 99, '96'),
+(19, 17, 4, 80, 88, 77, 88, '83'),
+(20, 17, 3, 98, 88, 77, 87, '88'),
+(21, 20, 3, 89, 98, 78, 88, '88'),
+(22, 20, 4, 87, 88, 77, 88, '85'),
+(23, 20, 4, 87, 86, 84, 85, '86'),
+(24, 20, 6, 85, 88, 85, 75, '83'),
+(25, 20, 2, 66, 77, 88, 85, '79'),
+(26, 19, 6, 87, 88, 87, 88, '88'),
+(27, 19, 6, 87, 88, 87, 88, '88'),
+(28, 19, 6, 87, 88, 87, 88, '88'),
+(29, 19, 6, 87, 88, 87, 88, '88'),
+(30, 19, 6, 87, 88, 87, 88, '88'),
+(31, 19, 6, 87, 88, 87, 88, '88'),
+(32, 23, 3, 89, 80, 87, 87, '86'),
+(33, 23, 2, 88, 84, 85, 86, '86'),
+(34, 23, 4, 85, 85, 84, 85, '85'),
+(35, 23, 4, 84, 84, 88, 88, '86'),
+(36, 23, 3, 84, 84, 85, 85, '85'),
+(37, 23, 4, 86, 86, 84, 84, '85'),
+(38, 23, 2, 86, 84, 84, 85, '85');
 
 -- --------------------------------------------------------
 
@@ -441,12 +487,13 @@ CREATE TABLE `student_sy_status` (
 --
 
 INSERT INTO `student_sy_status` (`sss_id`, `student_id`, `status`, `school`, `school_address`, `average`, `teacher_id`, `adviser`, `grade`, `section`, `total_days`, `total_present`, `sy_id`, `number_in_school`, `curriculum`, `advance_unit`, `lack_unit`, `classified_as`, `sy_status`) VALUES
-(17, 1, 1, 'Efegenio Lizares National High School', 'Brgy. Efegenio Lizares, Talisay City', '88.00', '2', '', 7, '1', 0, 0, 4, 0, '', '', '', '', 'New'),
+(17, 1, 1, 'Efegenio Lizares National High School', 'Brgy. Efegenio Lizares, Talisay City', '87.00', '', '', 7, '1', 0, 0, 4, 0, '', 'English', 'Math', '', 'New'),
 (18, 7, 1, 'Efegenio Lizares National High School', 'Brgy. Efegenio Lizares, Talisay City', '88.00', '3', '', 7, '2', 0, 0, 4, 0, '', '', '', '', 'New'),
-(19, 1, 0, 'Past School', 'Past school address', '81.00', '', 'Mr. From other', 9, '2', 40, 40, 2, 8, 'sample', '''', '''', '10', 'Transferee'),
-(20, 1, 0, 'qwer', 'qwerte', '85.00', '', 'qwert', 8, '2', 8, 160, 4, 7, 'qwer', '', '', '9', 'Transferee'),
+(19, 1, 0, 'Past School', 'Past school address', '83.75', '', 'Mr. From other', 9, '2', 40, 40, 4, 8, 'sample', '', '', '10', 'Transferee'),
+(20, 1, 0, 'qwer', 'qwerte', '82.13', '', 'qwert', 8, '2', 8, 160, 4, 7, 'qwer', '', '', '9', 'Transferee'),
 (21, 9, 1, 'Efegenio Lizares National High School', 'Brgy. Efegenio Lizares, Talisay City', '86.00', '2', '', 7, '1', 0, 0, 4, 0, '', '', '', '', 'New'),
-(22, 6, 1, 'Efegenio Lizares National High School', 'Brgy. Efegenio Lizares, Talisay City', '', '2', '', 7, '1', 0, 0, 4, 0, '', '', '', '', 'New');
+(22, 6, 1, 'Efegenio Lizares National High School', 'Brgy. Efegenio Lizares, Talisay City', '', '2', '', 7, '1', 0, 0, 4, 0, '', '', '', '', 'New'),
+(23, 1, 0, 'Efegenio', 'Talisay', '82.75', '', 'Ms. Caroline', 10, '4', 11, 0, 4, 20, '', '', '', 'Passed', 'Transferee');
 
 -- --------------------------------------------------------
 
@@ -593,7 +640,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `mr_and_ms`
 --
 ALTER TABLE `mr_and_ms`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `promoted_students`
 --
@@ -608,12 +655,12 @@ ALTER TABLE `school_year`
 -- AUTO_INCREMENT for table `student_attendance`
 --
 ALTER TABLE `student_attendance`
-  MODIFY `att_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=241;
+  MODIFY `att_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=253;
 --
 -- AUTO_INCREMENT for table `student_grade`
 --
 ALTER TABLE `student_grade`
-  MODIFY `sg_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `sg_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT for table `student_profile`
 --
@@ -623,7 +670,7 @@ ALTER TABLE `student_profile`
 -- AUTO_INCREMENT for table `student_sy_status`
 --
 ALTER TABLE `student_sy_status`
-  MODIFY `sss_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `sss_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT for table `subject_list`
 --

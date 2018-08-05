@@ -1,32 +1,6 @@
-<?php
- include 'includes/header2.php'; ?>
-<style>
-	#title1 {
-		display: block;
-		width:50%;
-		height:90px;
-		background-color: white;
-		padding:1px;
-		border-radius:5px;
-		position:fixed;
-		top:30%;
-		z-index: 1000px;
-	}
-	#main-bod{
-		    background: url(images/6943_Desert.jpg);
-		    background-repeat: no-repeat;
-		    background-size: cover;
-
-	}
-	#log_box{
-		position: fixed;
-		top:40%;
-		left:40%;
-		width:30%;
-	}
-</style>
-<body id="main-bod">
-		<div class="panel panel-info" id="log_box">
+<?php include 'includes/header2.php'; ?>
+<body>
+		<!-- <div class="panel panel-info" id="log_box">
 			<div class="panel-body">
 				<div class="col-lg-12">
 					<form method="POST" id="login_form">
@@ -42,22 +16,43 @@
 						<div class="form-group">
 							<div class="col-md-12 col-md-offset-10"><button class="btn btn-sm btn-default">Login</button></div>
 						</div>
-						<div class="form-group" id="correct">
-							<div class="col-md-12">
-								<div class="alert alert-success"><i class="fa fa-check"></i> Successfully Login</div>
-							</div>
-						</div>
-						<div class="form-group" id="error">
-							<div class="col-md-12">
-								<div class="alert alert-danger">Incorrect Username or Password</div>
-							</div>
-						</div>
-						</div>
+						
 					</form>
 				</div>
 			</div>
 		</div>
-</body>
+ -->
+ 	<div class = "container">
+
+ 	<div class="card card-container">          
+            <img id="profile-img" class="profile-img-card" src="images/images.jpg" />
+            <p id="profile-name" class="profile-name-card"></p>
+            <form class="form-signin" method = "POST" id  = "login_form">
+                <span id="reauth-email" class="reauth-email"></span>
+                <input type="text" id="inputEmail" class="form-control" id="user" name="user" placeholder="Username">
+                
+                <input type="password" id="inputPassword" class="form-control" id="pass" name="pass"  placeholder="Password" required="">
+              
+                <div id="remember" class="checkbox">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+            </form><!-- /form -->
+            <div class="form-group" id="correct">				
+					<div class="alert alert-success"><i class="fa fa-check"></i> Successfully Login</div>				
+			</div>
+			<div class="form-group" id="error">
+				<div class="alert alert-danger">Incorrect Username or Password</div>				
+			</div>
+        </div><!-- /card-container --> 		
+        <h3 style="text-align: center;text-align: center; font-weight: 700;text-shadow: 1px 1px 1px #f2f2f2;font-size: 32px;">Efegenio Lizares National High School</h3>
+ 	</div>
+ 
+        
+   
+ </body>
 <script>
 		jQuery(document).ready(function(){
 					jQuery(document).ready(function(){

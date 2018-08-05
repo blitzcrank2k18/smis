@@ -13,6 +13,7 @@
     <link href="asset/css/styles.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="asset/css/sb-admin.css" rel="stylesheet">
+    <link href="assets/css/google.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
     <link href="asset/css/plugins/morris.css" rel="stylesheet">
